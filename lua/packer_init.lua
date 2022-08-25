@@ -69,19 +69,10 @@ return packer.startup(function(use)
 
     use {
         "windwp/nvim-autopairs",
-
-        config = [[require("completion.autopairs")()]]
-
-    }
-
-    -- golang
-    use({
-        "ray-x/go.nvim",
-        run = function()
-            require('go').setup()
+        config = function()
+            require("nvim-autopairs").setup {}
         end
-
-    })
+    }
 
     use {
         'JoosepAlviste/nvim-ts-context-commentstring',
@@ -102,27 +93,25 @@ return packer.startup(function(use)
         config = [[require("lsp")()]]
     }
 
-    use "rafamadriz/friendly-snippets"
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-cmdline'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-path'
+    -- Snippets
 
-    use {
-        "L3MON4D3/LuaSnip",
-        requires = {{'saadparwaiz1/cmp_luasnip'}, {'rafamadriz/friendly-snippets'}},
+    use {'hrsh7th/nvim-cmp'}
+
+    -- snippet
+    use({
+        "saadparwaiz1/cmp_luasnip",
+        requires = "L3MON4D3/LuaSnip",
+        config = [[require("snippet.init")()]]
+    })
+
+    -- Go
+    use({
+        "ray-x/go.nvim",
         run = function()
-            require("luasnip/loaders/from_vscode").lazy_load()
+            require('go').setup({})
         end
-    }
 
-    -- Autocomplete
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path', 'hrsh7th/cmp-buffer',
-                    'rafamadriz/friendly-snippets', 'saadparwaiz1/cmp_luasnip'}
-    }
+    })
 
     -- Statusline
     use {
