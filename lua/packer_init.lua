@@ -104,13 +104,16 @@ return packer.startup(function(use)
         config = [[require("snippet.init")()]]
     })
 
+    use "rafamadriz/friendly-snippets"
+
     -- Go
     use({
         "ray-x/go.nvim",
         run = function()
-            require('go').setup({})
+            require('go').setup({
+                luasnip = true
+            })
         end
-
     })
 
     -- Statusline
