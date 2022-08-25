@@ -97,10 +97,11 @@ lspconfig.yamlls.setup(c.default({
 }))
 
 lspconfig.emmet_ls.setup(c.default({
-    filetypes = {"html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "gohtmltmpl"}
+    filetypes = {"html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "gohtmltmpl", "svelte"}
 }))
 
 local servers = {"dockerls", "vimls"}
+
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup(c.default())
 end

@@ -3,7 +3,6 @@
 -----------------------------------------------------------
 -- Plugin manager: packer.nvim
 -- url: https://github.com/wbthomason/packer.nvim
-
 -- Automatically install packer
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -70,9 +69,9 @@ return packer.startup(function(use)
 
     use {
         "windwp/nvim-autopairs",
-        config = function()
-            require("nvim-autopairs").setup {}
-        end
+
+        config = [[require("completion.autopairs")()]]
+
     }
 
     -- golang
@@ -105,7 +104,8 @@ return packer.startup(function(use)
     use {
         'hrsh7th/nvim-cmp',
         requires = {'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path', 'hrsh7th/cmp-buffer',
-                    'saadparwaiz1/cmp_luasnip'}
+                    'saadparwaiz1/cmp_luasnip'},
+        config = [[require("completion.snippet")()]]
     }
 
     -- Statusline
