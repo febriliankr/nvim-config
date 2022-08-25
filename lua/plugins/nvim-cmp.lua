@@ -27,27 +27,25 @@ cmp.setup {
         keyword_length = 2
     },
     mapping = {
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ['<Tab>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif ls.expand_or_locally_jumpable() then
-                ls.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
             else
                 fallback()
             end
-        end, {"i", "s"}),
+        end,
 
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        ['<S-Tab>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif ls.jumpable(-1) then
-                ls.jump(-1)
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
-        end, {"i", "s"}),
+        end,
 
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
 

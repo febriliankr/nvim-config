@@ -62,5 +62,12 @@ map("n", "<leader><leader>", ":Telescope builtin<cr>", {
     desc = "Telescope: Open builtin function"
 })
 
-require('nvim_comment').setup({line_mapping = "<leader>cl", operator_mapping = "<leader>c", comment_chunk_text_object = "ic"})
+require('nvim_comment').setup({
+    line_mapping = "<leader>cl",
+    operator_mapping = "<leader>c",
+    comment_chunk_text_object = "ic"
+})
 
+map("n", "gtj", ":GoAddTag json<cr>")
+map("n", "gtd", ":GoAddTag db<cr>")
+map("n", "gtx", ":GoRmTag<cr>")

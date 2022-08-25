@@ -77,8 +77,10 @@ return packer.startup(function(use)
     -- golang
     use({
         "ray-x/go.nvim",
-        ft = "go",
-        config = [[require("languages.go")()]]
+        run = function()
+            require('go').setup()
+        end
+
     })
 
     use {
@@ -100,12 +102,26 @@ return packer.startup(function(use)
         config = [[require("lsp")()]]
     }
 
+    use "rafamadriz/friendly-snippets"
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-cmdline'
+    use 'saadparwaiz1/cmp_luasnip'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-path'
+
+    use {
+        "L3MON4D3/LuaSnip",
+        requires = {{'saadparwaiz1/cmp_luasnip'}, {'rafamadriz/friendly-snippets'}},
+        run = function()
+            require("luasnip/loaders/from_vscode").lazy_load()
+        end
+    }
+
     -- Autocomplete
     use {
         'hrsh7th/nvim-cmp',
         requires = {'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path', 'hrsh7th/cmp-buffer',
-                    'saadparwaiz1/cmp_luasnip'},
-        config = [[require("completion.snippet")()]]
+                    'rafamadriz/friendly-snippets', 'saadparwaiz1/cmp_luasnip'}
     }
 
     -- Statusline
